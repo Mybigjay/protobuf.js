@@ -1,5 +1,5 @@
 //import { protobuf } from "protobuf.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 /*import {
   convertProtoMessageToString,
   parseRootObjectToProtoMessage,
@@ -11,6 +11,8 @@ const { Buffer } = require("buffer/");
 //import { Buffer } = require (buffer);
 
 function App() {
+  const [stonk, setStonk] = useState([]);
+  //let [response, setResponse] = useState([]);
   useEffect(() => {
     const ws = new WebSocket("wss://streamer.finance.yahoo.com");
     //const ws = new WebSocket("wss://ws.binaryws.com/websockets/v3?app_id=1089");
@@ -48,11 +50,19 @@ function App() {
   return (
     <div className="App">
       <h1>Stonks</h1>
+      {stonk && <h2>{stonk.price}</h2>}
+      {Object.keys(stonk).map((e) => stonk[e])}
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
 
 
 
