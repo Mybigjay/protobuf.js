@@ -53,3 +53,81 @@ function App() {
 }
 
 export default App;
+
+
+
+/*     
+import { useEffect, useState } from "react";
+var protobuf = require("protobufjs");
+const { Buffer } = require("buffer/");
+
+function App() {
+  const [stonk, setStonk] = useState([]);
+  let [response, setResponse] = useState([]);
+  useEffect(() => {
+    //const ws = new WebSocket("wss://streamer.finance.yahoo.com");
+    const ws = new WebSocket("wss://ws.binaryws.com/websockets/v3?app_id=1089");
+
+    ws.onopen = function open() {
+      console.log("connected");
+      ws.send(
+        JSON.stringify({
+          active_symbols: "brief",
+        })
+      );
+    };
+
+    ws.onclose = function close() {
+      console.log("disconnected");
+    };
+
+    ws.onmessage = function incoming(msg) {
+      response = JSON.parse(msg.data);
+      console.log("active_symbols: %o", response);
+      //console.log(msg.data);
+      const next = response;
+      setStonk(next);
+      console.log("next", next);
+      console.log("stonk", stonk);
+    };
+    console.log("stonk2", stonk);
+  }, [response]);
+  // const { active_symbols } = data;
+  console.log("response", response);
+  const items = Object.keys(stonk).map((item) => {
+    return (
+      <div>
+        <h1>Stonks</h1>
+        <div>
+          <h2>gh{Object.keys(response).map((e) => response[e])}</h2>
+          <p> ghh{Object.keys(stonk).map((item) => response)}</p>;
+          <img
+            src={item?.symbol}
+            alt={item.name}
+            height="100"
+            style={{ marginBottom: 10 }}
+          />
+          <span>
+            {item?.title}
+            &nbsp;
+            <span
+              style={{
+                color: "rgb(14, 203, 129)",
+                fontSize: 22,
+                fontWeight: 500,
+              }}
+            >
+              £{item?.price}
+            </span>
+          </span>
+        </div>
+      </div>
+    );
+  });
+}
+export default App;
+
+
+
+
+*/
